@@ -1,28 +1,26 @@
 // Return value from global variable maps
 // --------------------------------
-@function gutter($key: 'default', $unit: 'px') {
-  $gutter: map-get($gutters, $key);
-
-  @return $gutter;
+@function gutter($key: 'd', $unit: 'px') {
+  @return map-get($gutters, $key);
 }
 
-@function wrapper($key: 'default') {
+@function wrapper($key: 'd') {
   @return map-get($wrapper-widths, $key);
 }
 
-@function spacing($key: 'default') {
+@function spacing($key: 'd') {
   @return map-get($spacing-units, $key);
 }
 
-@function z-index($key: 'default') {
+@function z-index($key: 'd') {
   @return map-get($z-indexes, $key);
 }
 
-@function border-radius($key: 'default') {
+@function border-radius($key: 'd') {
   @return map-get($border-radii, $key);
 }
 
-@function shadow($key: 'default') {
+@function shadow($key: 'd') {
   @return map-get($shadows, $key) rgba(black, .15);
 }
 
@@ -30,15 +28,15 @@
   @return map-get($font-families, $key);
 }
 
-@function font-size($key: 'default') {
+@function font-size($key: 'd') {
   @return map-get($font-sizes, $key);
 }
 
-@function font-weight($key: 'normal') {
+@function font-weight($key: 'n') {
   @return map-get($font-weights, $key);
 }
 
-@function line-height($key: 'default') {
+@function line-height($key: 'd') {
   @return map-get($line-heights, $key);
 }
 
@@ -57,10 +55,30 @@
   @return $value + '';
 }
 
-@function off-screen() {
-  @return -#{infinite()};
-}
-
 @function infinite() {
   @return 99999999px;
+}
+
+@function str-split($string, $splitter: '-') {
+  $parts: ();
+  $index : str-index($string, $splitter);
+  @while $index {
+    $part: str-slice($string, 1, $index - 1);
+    $parts: append($parts, $part);
+    $string: str-slice($string, $index + 1);
+    $index : str-index($string, $splitter);
+  }
+  $parts: append($parts, $string);
+
+  @return $parts;
+}
+
+@function abbreviate($term, $chars: 1, $splitter: '-') {
+  $parts: str-split($term);
+  $abbr-term: '';
+  @each $part in $parts {
+    $abbr: str-slice($part, 1, $chars);
+    $abbr-term: $abbr-term + $abbr;
+  }
+  @return $abbr-term;
 }

@@ -1,15 +1,15 @@
 // Mixin for generating media queries from $breakpoints map
 // --------------------------------
-@mixin breakpoint($breakpoint, $direction: 'only') {
-  $breakpoint-value: undefined;
+@mixin breakpoint($breakpoint, $direction: 'up') {
+  $px-value: undefined;
   $media-query: undefined;
 
   @if str-index(to-str($breakpoint), 'px') {
-    $breakpoint-value: $breakpoint;
+    $px-value: $breakpoint;
     $breakpoint: false;
   }
   @else {
-    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    $px-value: map-get($breakpoints, $breakpoint);
   }
 
   @if $breakpoint == 'retina' {
@@ -25,16 +25,16 @@
       0px
     );
 
-    $media-query: '(min-width: #{$min-width}) and (max-width: #{$breakpoint-value})';
+    $media-query: '(min-width: #{$min-width}) and (max-width: #{$px-value})';
   }
   @else if $direction == 'down' {
-    $media-query: '(max-width: #{$breakpoint-value})';
+    $media-query: '(max-width: #{$px-value})';
   }
   @else if $direction == 'up' {
-    $media-query: '(min-width: #{$breakpoint-value + 1})';
+    $media-query: '(min-width: #{$px-value + 1})';
   }
   @else {
-    @error 'Invalid arguments for breakpoint mixin';
+    @error $direction;
   }
 
   @media screen and #{$media-query} {

@@ -97,9 +97,9 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
-@each $heading, $font-size in map-get($heading-font-sizes, 'large') {
-  $margin-bottom: if($heading < 3, '2x-small', '2x-small');
-  $font-weight: if($heading < 3, 'bold', 'medium');
+@each $heading, $font-size in map-get($heading-font-sizes, 'l') {
+  $margin-bottom: if($heading < 3, '2xs', '2xs');
+  $font-weight: if($heading < 3, 'b', 'm');
 
 	h#{$heading} {
     margin-bottom: spacing($margin-bottom);
@@ -108,12 +108,12 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: font-weight($font-weight);
 		line-height: 1 + ($heading / 20);
 
-		@include breakpoint('medium') {
-			font-size: map-get(map-get($heading-font-sizes, 'medium'), $heading);
+		@include breakpoint('m') {
+			font-size: map-get(map-get($heading-font-sizes, 'm'), $heading);
 		}
 
-		@include breakpoint('small') {
-			font-size: map-get(map-get($heading-font-sizes, 'small'), $heading);
+		@include breakpoint('s') {
+			font-size: map-get(map-get($heading-font-sizes, 's'), $heading);
 		}
 	}
 }

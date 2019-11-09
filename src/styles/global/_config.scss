@@ -12,33 +12,36 @@ $rem-in-px: 16px !default;
 // Breakpoints
 // --------------------------------
 $breakpoints: (
-  'small': 560px,
-  'medium': 840px,
-  'large': 1120px
+  // Mobile
+  's': 320px,
+  'sl': 568px,
+  // Tablets
+  'm': 768px,
+  'ml': 1024px,
+  // Laptop/desktop
+  'l': 1200px,
 ) !default;
 
 
 // Wrapper object widths
 // --------------------------------
 $wrapper-widths: (
-  '2x-small': 280px,
-  'x-small': 560px,
-  '700': 700px,
-  'small': 840px,
-  '960': 960px,
-  'default': 1120px,
-  'large': 1400px,
-  'x-large': 1680px
+  '2xs': 320px,
+  'xs': 480px,
+  's': 640px,
+  'd': 960px,
+  'l': 1280px,
+  'xl': 1440px
 ) !default;
 
 
 // Gutters
 // --------------------------------
 $gutters: (
-  'x-small': 12px,
-  'small': 24px,
-  'default': 32px,
-  'large': 48px
+  'xs': 12px,
+  's': 24px,
+  'd': 32px,
+  'l': 48px
 ) !default;
 
 
@@ -50,49 +53,46 @@ $grid-denominators: 2, 3, 4 !default;
 // Z-indexes
 // --------------------------------
 $z-indexes: (
-  'negative': -11,
-  'default': 0,
-  'large': 11,
-  'x-large': 22,
-  '2x-large': 33,
-  '3x-large': 44,
-  '4x-large': 55,
-  'huge': 66,
-  'x-huge': 77
+  'n': -11,
+  'd': 0,
+  'l': 11,
+  'xl': 22,
+  '2xl': 33,
+  '3xl': 44,
+  '4xl': 55,
+  'h': 66,
+  'xh': 77
 ) !default;
 
 
 // Spacing units
 // --------------------------------
 $spacing-units: (
-  'none': 0,
-  '4x-small': 4px,
-  '3x-small': 8px,
-  '2x-small': 12px,
-  'x-small': 16px,
-  'small': 20px,
-  'default': 24px,
-  'large': 32px,
-  'x-large': 40px,
-  '2x-large': 48px,
-  '3x-large': 56px,
-  'huge': 64px,
-  'x-huge': 76px,
-  '2x-huge': 88px,
-  '3x-huge': 100px,
-  'giant': 124px,
-  'x-giant': 148px,
-  '2x-giant': 160px
+  '0': 0,
+  '4xs': 4px,
+  '3xs': 6px,
+  '2xs': 8px,
+  'xs': 12px,
+  's': 16px,
+  'd': 24px,
+  'l': 32px,
+  'xl': 48px,
+  '2xl': 64px,
+  '3xl': 96px,
+  '4xl': 128px
 ) !default;
+
+$margins: ('0', '2xs', 'd', 'xl') !default;
+$paddings: ('xs', 'd') !default;
 
 
 // Border radii
 // --------------------------------
 $border-radii: (
-  'none': 0,
-  'small': 2px,
-  'default': 4px,
-  'large': 8px,
+  '0': 0,
+  's': 2px,
+  'd': 4px,
+  'l': 8px,
   'infinite': infinite() // Rounded
 ) !default;
 
@@ -100,11 +100,11 @@ $border-radii: (
 // Shadows
 // --------------------------------
 $shadows: (
-  'small': (0 1px 2px),
-  'default': (0 2px 4px),
-  'large': (0 2px 8px),
-  'x-large': (0 4px 16px),
-  '2x-large': (0 4px 32px)
+  's': (0 1px 2px),
+  'd': (0 2px 4px),
+  'l': (0 2px 8px),
+  'xl': (0 4px 16px),
+  '2xl': (0 4px 32px)
 ) !default;
 
 
@@ -120,28 +120,28 @@ $font-families: (
 // Font weight
 // --------------------------------
 $font-weights: (
-  'bold': 700,
-  'normal': 400
+  'b': 700,
+  'n': 400
 ) !default;
 
 // Font-sizes
 // --------------------------------
 $font-sizes: (
-  'x-small': 0.75rem,
-  'small': 0.875rem,
-  'default': 1rem,
-  'large': 1.125rem,
-  'x-large': 1.25rem,
-  '2x-large': 1.5rem,
-  '3x-large': 2rem,
-  '4x-large': 2.5rem,
-  'huge': 3rem,
-  'x-huge': 4rem,
+  'xs': 0.75rem,
+  's': 0.875rem,
+  'd': 1rem,
+  'l': 1.125rem,
+  'xl': 1.25rem,
+  '2xl': 1.5rem,
+  '3xl': 2rem,
+  '4xl': 2.5rem,
+  'h': 3rem,
+  'xh': 4rem,
 ) !default;
 
 // Heading font-sizes for small and default screens
 $heading-font-sizes: (
-  'small': (
+  's': (
     1: font-size('2x-large'),
     2: font-size('x-large'),
     3: font-size('large'),
@@ -149,7 +149,7 @@ $heading-font-sizes: (
     5: font-size(),
     6: font-size()
   ),
-  'medium': (
+  'm': (
     1: font-size('3x-large'),
     2: font-size('2x-large'),
     3: font-size('x-large'),
@@ -157,7 +157,7 @@ $heading-font-sizes: (
     5: font-size(),
     6: font-size()
   ),
-  'large': (
+  'l': (
     1: font-size('4x-large'),
     2: font-size('3x-large'),
     3: font-size('x-large'),
@@ -194,16 +194,15 @@ $colors: (
   'transparent': transparent,
 
   // Greys
-  'grey-3x-light': #FAFAFA,
-  'grey-2x-light': #DADADA,
-  'grey-x-light': #9A9A9A,
-  'grey-light': #7A7A7A,
+  'grey-3xl': #FAFAFA,
+  'grey-2xl': #DADADA,
+  'grey-xl': #9A9A9A,
+  'grey-l0': #7A7A7A,
   'grey': #4A4A4A,
-  'grey-dark': #1A1A1A,
+  'grey-d': #1A1A1A,
 
   // Messaging
   'error': #FF7979,
-  'error-dark': darken(#FF7979, 12%),
   'info': #03B1EE,
   'warning': #FFD200,
   'success': #00EA0E,

@@ -1,67 +1,15 @@
-// Linear gradient
-// --------------------------------
-@mixin linear-gradient($direction, $color-stops...) {
-  background: nth(nth($color-stops, 1), 1);
-  background: linear-gradient($direction, $color-stops);
-}
-
-
-// Retina images
-// --------------------------------
-@mixin retina-image($url, $filetype) {
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-image: url('../images/#{$url}.#{$filetype}');
-
-  @include breakpoint('retina') {
-    background-image: url('../images/#{$url}@2x.#{$filetype}');
-  }
-}
-
-
 // Add responsive classes
 // --------------------------------
-@mixin responsive-classes($up-down: false) {
-  @each $breakpoint-name, $breakpoint in $breakpoints {
-    @include breakpoint($breakpoint-name, 'only') {
+@mixin responsive($direction: 'up') {
+  @each $key, $value in $breakpoints {
+    @include breakpoint($key, $direction) {
+      @at-root {
 
-      &\@#{$breakpoint-name} {
-        @include specify {
+        #{str-insert('#{&}', '#{$key}\:', 2)} {
           @content;
         }
       }
     }
-
-    @if $up-down {
-      @include breakpoint($breakpoint-name, 'up') {
-
-        &\@#{$breakpoint-name}-up {
-          @include specify {
-            @content;
-          }
-        }
-      }
-
-      @include breakpoint($breakpoint-name, 'down') {
-
-        &\@#{$breakpoint-name}-down {
-          @include specify {
-            @content;
-          }
-        }
-      }
-    }
-  }
-}
-
-
-// Create a simple utility class
-// --------------------------------
-@mixin utility($property, $value, $modifier: false) {
-  $modifier: if($modifier, '--#{$modifier}', '');
-
-  .u-#{$property}#{$modifier} {
-    #{$property}: $value !important;
   }
 }
 
@@ -81,5 +29,20 @@
   .#{$classname},
   %#{$classname} {
     @content;
+  }
+}
+
+
+// Create a simple utility class
+// --------------------------------
+@mixin utility($property, $value, $map: false) {
+  $modifier: $value;
+
+  @if type-of($map) == map {
+    $value: map-get($map, $value);
+  }
+
+  .u\:#{abbreviate($property)}--#{$modifier} {
+    #{$property}: $value !important;
   }
 }
