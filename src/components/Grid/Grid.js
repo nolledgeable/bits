@@ -2,77 +2,53 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { getResponsiveClasses } from '../../helpers';
 
-const getGridClassNames = ({
-  className,
-  direction,
-  flush,
-  itemsPerRow,
-  verticalAlign
+
+const Grid = ({
+  children,
+  className = '',
+  direction = 'ltr',
+  element: Element = 'div',
+  flush = false,
+  gutterSize = 'default',
+  itemSize = 1,
+  verticalAlign = 'top',
+  ...rest
 }) => {
-  let classNamesArgs = [
-    className,
+  const joinedClassNames = classNames(
+    'grid',
     {
       [`grid--${direction}`]: direction !== 'ltr',
       'grid--flush': flush,
-      [`grid--${itemsPerRow}`]: typeof itemsPerRow === 'number',
+      [`grid--${gutterSize}`]: gutterSize !== 'default',
+      [`grid--${itemSize}`]: typeof itemSize === 'number',
       [`grid--${verticalAlign}`]: verticalAlign !== 'top'
-    }
-  ];
-
-  if (typeof itemsPerRow === 'object') {
-    classNamesArgs = [
-      ...classNamesArgs,
-      Object.keys(itemsPerRow).map(breakpoint => `grid--${itemsPerRow[breakpoint]}@${breakpoint}`)
-    ]
-  }
-
-  return classNames(...classNamesArgs);
-};
-
-
-const Grid = (props;) => {
-  const {
-    className,
-    direction,
-    element: Element,
-    flush,
-    itemsPerRow,
-    verticalAlign,
-    ...rest
-  } = props;
+    },
+    getResponsiveClasses(itemSize, 'grid'),
+    className
+  );
 
   return (
-    <Element
-      className={getGridClassNames(props)}
-      {...rest}
-    >
-      Test
+    <Element className={joinedClassNames} {...rest}>
+      {children}
     </Element>
   );
 };
 
 
 Grid.propTypes = {
+  children: PropTypes.node.isRequired,
   className: PropTypes.string,
   direction: PropTypes.oneOf([ 'ltr', 'rtl' ]),
   element: PropTypes.string,
   flush: PropTypes.bool,
-  itemsPerRow: PropTypes.oneOfType([
-    PropTypes.number,
+  gutterSize: PropTypes.oneOf([ 'x-small', 'small', 'default', 'large', 'x-large' ]),
+  itemSize: PropTypes.oneOfType([
+    PropTypes.string,
     PropTypes.object
   ]),
   verticalAlign: PropTypes.oneOf([ 'top', 'middle', 'bottom' ])
-};
-
-
-Grid.defaultProps = {
-  className: '',
-  direction: 'ltr',
-  element: 'div',
-  flush: false,
-  itemsPerRow: 1,
-  verticalAlign: 'top'
 };
 
 

@@ -20,7 +20,7 @@
       padding-left: 0;
     }
 
-    @include responsive-classes {
+    @include responsive {
       margin-bottom: 0;
       margin-left: 0;
 
@@ -64,7 +64,7 @@
   // Responsive
   &--1 {
 
-    @include responsive-classes(true) {
+    @include responsive() {
 
       > .grid__item {
         width: 100%;
@@ -76,7 +76,7 @@
     $width: percentage(1 / $denominator);
 
     &--#{$denominator} {
-      @include responsive-classes(true) {
+      @include responsive() {
 
         > .grid__item {
           width: $width;
@@ -88,7 +88,7 @@
   &--rtl {
     direction: rtl;
 
-    @include responsive-classes {
+    @include responsive {
       direction: rtl;
     }
   }
@@ -96,7 +96,7 @@
   &--ltr {
     direction: ltr;
 
-    @include responsive-classes {
+    @include responsive {
       direction: ltr;
     }
   }
@@ -122,7 +122,7 @@
     &--1 {
       width: 100%;
 
-      @include responsive-classes {
+      @include responsive {
         width: 100%
       }
     }
@@ -134,7 +134,7 @@
         &--#{$divisor}\/#{$denominator} {
           width: $width;
 
-          @include responsive-classes {
+          @include responsive {
             width: $width;
           }
         }
