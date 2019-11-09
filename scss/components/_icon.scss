@@ -1,0 +1,112 @@
+@include extendable('icon') {
+  position: relative;
+  display: inline-block;
+  top: -2px; // HACK: valign adjust
+  width: spacing();
+  height: spacing();
+  vertical-align: middle;
+
+  fill: currentColor;
+
+  // Modifiers
+  &--prefix,
+  &--postfix {
+    width: spacing('small');
+    height: spacing('small');
+  }
+
+  &--prefix {
+    margin-right: spacing('4x-small');
+  }
+
+  &--postfix {
+    margin-left: spacing('4x-small');
+  }
+
+  &--small {
+    width: spacing('small');
+    height: spacing('small');
+  }
+
+  &--large {
+    width: spacing('large');
+    height: spacing('large');
+  }
+
+  &--x-large {
+    width: spacing('x-large');
+    height: spacing('x-large');
+  }
+
+  &--3x-large {
+    width: spacing('3x-large');
+    height: spacing('3x-large');
+  }
+
+  &--x-huge {
+    width: spacing('x-huge');
+    height: spacing('x-huge');
+  }
+}
+
+
+.circle-icon {
+  position: relative;
+  display: inline-block;
+  width: spacing('2x-large');
+  height: spacing('2x-large');
+
+  border-radius: border-radius();
+
+  text-align: center;
+  line-height: spacing('2x-large');
+  color: color('white');
+
+  // Modifiers
+  &--border {
+    border: 1px solid color('grey-x-light');
+
+    color: color('grey');
+  }
+
+  &--x-large {
+    width: spacing('3x-huge');
+    height: spacing('3x-huge');
+
+    line-height: spacing('3x-huge');
+
+    .circle-icon__icon {
+      width: spacing('large');
+      height: spacing('large');
+    }
+  }
+
+  &--2x-large {
+    width: spacing('x-giant');
+    height: spacing('x-giant');
+
+    line-height: spacing('x-giant');
+
+    .circle-icon__icon {
+      width: spacing('3x-large');
+      height: spacing('3x-large');
+    }
+  }
+
+  &--blue {
+    background-color: color('blue');
+    background-image: linear-gradient(180deg, rgba(white, 0.4) 0%, rgba(white, 0) 50%);
+  }
+
+  &--purple {
+    background-color: col   or('purple');
+    background-image: linear-gradient(180deg, rgba(white, 0.4) 0%, rgba(white, 0) 50%);
+  }
+
+  &--success {
+    background-color: color('success');
+    color: color('grey-dark');
+  }
+}
+
+  // .circle-icon__icon {}

@@ -1,0 +1,31 @@
+.placeholder {
+  position: relative;
+  height: 100vh;
+
+  margin-top: -80px; // Under header
+  padding: 0 spacing();
+}
+
+  .placeholder__title {
+    font-size: 64px;
+    color: white;
+
+    @include breakpoint('medium') {
+      font-size: font-size('4x-large');
+    }
+
+    @include breakpoint('small') {
+      font-size: font-size('3x-large');
+    }
+  }
+
+  .placeholder__description {
+    margin-bottom: spacing('x-large');
+
+    font-size: font-size('x-large');
+    color: white;
+
+    @include breakpoint('small') {
+      font-size: font-size('large');
+    }
+  }

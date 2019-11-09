@@ -1,0 +1,418 @@
+// Label
+// --------------------------------
+@include extendable('label') {
+  display: block;
+
+  text-align: left;
+  font-size: font-size('x-small');
+  font-weight: font-weight('normal');
+  line-height: line-height('none');
+  color: color('grey-light');
+}
+
+
+// Inputs
+// --------------------------------
+.input-wrapper {
+  position: relative;
+
+  // Modifiers
+  &--inline {
+    display: inline-block;
+    min-width: spacing('3x-huge');
+    vertical-align: middle;
+  }
+}
+
+
+@include extendable('input') {
+  display: block;
+  width: 100%;
+  // min-width: spacing('huge');
+  height: spacing('2x-large');
+
+  padding: 0 spacing('large');
+
+  background-color: white;
+  border: 1px solid transparent;
+	border-radius: border-radius();
+  box-shadow: none;
+
+  font-size: font-size();
+  font-weight: font-weight('medium');
+  line-height: spacing('2x-large') - 2px; // Minus border
+  text-overflow: ellipsis;
+  color: color('grey-dark');
+
+	@include state('focus') {
+    outline: 0;
+	}
+
+  @include state(('disabled', 'is-disabled')) {
+    cursor: not-allowed;
+
+    @include state('hover') {
+      opacity: 0.6;
+    }
+  }
+
+  @include state('is-loading') {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: progress;
+	}
+
+  @include state('has-error') {
+
+    // Increase specificity to override .input-group__input when stacked
+    @include specify {
+      border-color: color('error');
+    }
+  }
+
+
+  // Modifiers
+  &--small {
+    height: spacing('x-large');
+
+    padding: 0 spacing();
+
+    font-size: font-size('small');
+    line-height: spacing('x-large') - 2px; // Minus border
+  }
+
+  &--x-small {
+    height: spacing();
+
+    padding: 0 spacing('2x-small');
+
+    font-size: font-size('small');
+    line-height: spacing() - 2px; // Minus border
+  }
+
+  &--simple {
+    height: spacing();
+
+    padding: 0;
+
+    border-radius: 0;
+
+    font-weight: font-weight('normal');
+    line-height: spacing() - 2px; // Minus border
+    color: currentColor;
+
+    @include specify {
+      background-color: transparent;
+    }
+  }
+
+  &--border {
+    padding: 0;
+
+    border-bottom-color: color('grey-x-light');
+    border-radius: 0;
+
+    @include state('focus') {
+      border-bottom-color: color('purple');
+    }
+
+    @include state('has-error') {
+
+      // Increase specificity to override .input-group__input when stacked
+      @include specify(2) {
+        border-color: transparent;
+        border-bottom-color: color('error')
+      }
+    }
+  }
+
+  &--textarea {
+    height: spacing('giant');
+
+    padding: 8px spacing('x-small');
+
+    border-radius: 0;
+
+    font-weight: font-weight('normal');
+    line-height: line-height('small');
+
+    // Combined modifiers
+    &.input--border {
+      padding: 0 0 8px;
+    }
+  }
+}
+
+
+@include extendable('select') {
+  @extend %input;
+
+  padding-right: spacing('x-small');
+
+  background-image: svg-load('#{$image-path}/chevron-down.svg', fill=color('grey-dark'));
+  background-size: spacing('x-small');
+  background-position: right 16px center;
+  background-repeat: no-repeat;
+
+  cursor: pointer;
+
+  @include state(('disabled', 'is-disabled')) {
+    background-image: none;
+  }
+
+
+  // Modifiers
+  &--small {
+    @extend %input--small;
+
+    padding-right: spacing('2x-small');
+
+    background-position: right 12px center;
+
+    font-size: font-size('small');
+    line-height: spacing('x-large') - 2px;
+  }
+
+  &--x-small {
+    @extend %input--x-small;
+
+    background-position: right 6px center;
+
+    line-height: spacing() - 2px;
+  }
+
+  &--white {
+    background-color: transparent;
+    background-image: svg-load('#{$image-path}/chevron-down.svg', fill=color('white'));
+
+    color: white;
+  }
+
+  &--simple {
+    @extend %input--simple;
+
+    padding-right: spacing();
+    background-position: right center;
+  }
+
+  &--border {
+    @extend %input--border;
+
+    background-position: right center;
+  }
+}
+
+
+// Checkbox
+// --------------------------------
+@include extendable('checkbox') {
+  position: relative;
+  display: inline-block;
+
+  // Modifiers
+  &--label {
+    padding-left: spacing();
+
+    .checkbox__input {
+      position: absolute;
+      top: spacing('4x-small'); left: 0;
+    }
+  }
+}
+
+  .checkbox__input {
+
+    @include state(('disabled', 'is-disabled')) {
+
+      &,
+      + .checkbox__label {
+        cursor: not-allowed;
+
+        @include state('hover') {
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+
+  .checkbox__label {
+    font-size: font-size();
+    line-height: line-height('small');
+    color: color();
+  }
+
+
+// Input group
+// --------------------------------
+.input-group {
+  @extend %layout;
+
+  // Modifiers
+  &--fixed {
+    table-layout: fixed;
+  }
+
+  &--stack {
+
+    @include responsive-classes(true) {
+      display: block;
+
+      .input-group__item {
+        display: block;
+        width: auto;
+
+        white-space: normal;
+      }
+
+      .input-group__input {
+        border-left-color: transparent;
+
+        @include specify {
+          border-radius: border-radius();
+        }
+      }
+    }
+  }
+}
+
+  .input-group__item {
+    @extend %layout__item;
+
+    margin-bottom: spacing('2x-small');
+    padding: 0;
+
+
+    // Modifiers
+    &--fixed {
+      @extend %layout__item--fixed;
+    }
+  }
+
+  .input-group__input {
+    width: 100%;
+
+    border-radius: 0;
+    // border-left-color: color('grey-x-light');
+
+    @include state('first-child', '.input-group__item') {
+      border-radius: border-radius() 0 0 border-radius();
+      border-left-color: transparent;
+    }
+
+    @include state('last-child', '.input-group__item') {
+      border-radius: 0 border-radius() border-radius() 0;
+    }
+  }
+
+// Affix input
+// --------------------------------
+.affix-input {
+  position: relative;
+  font-size: font-size(); // Reset font-size for correct affix placement
+
+
+  // Modifiers
+  &--suffix {
+
+    .affix-input__input {
+      padding-left: 0;
+      padding-right: spacing('3x-large');
+    }
+
+    .affix-input__affix {
+      left: 0; right: auto;
+    }
+  }
+
+  &--white {
+
+    .affix-input__input {
+      color: white;
+    }
+
+    .affix-input__select {
+      @extend %select--white;
+    }
+
+    .affix-input__affix {
+      color: white;
+    }
+  }
+
+  &--simple {
+    display: inline-block;
+
+    .affix-input__input {
+      @extend %input--simple;
+
+      padding-left: spacing('large');
+    }
+
+    .affix-input__select {
+      @extend %select--simple;
+
+      padding-left: spacing('large');
+    }
+
+    .affix-input__affix {
+      top: 2px; left: 0;
+    }
+  }
+
+  &--border {
+
+    .affix-input__input,
+    .affix-input__select {
+      @extend %input--border;
+
+      padding-left: spacing('large');
+
+      @include state('has-error', '.affix-input--border') {
+        // border-color: transparent;
+        border-bottom-color: color('error')
+      }
+    }
+
+    .affix-input__affix {
+      left: 0;
+    }
+
+    &.affix-input--white {
+
+      .affix-input__input,
+      .affix-input__select {
+        border-bottom-color: color('white-light');
+      }
+    }
+  }
+
+  &--small {
+
+    .affix-input__input {
+      @extend %input--small;
+
+      padding-left: 28px;
+    }
+
+    .affix-input__affix {
+      top: 10px;
+      display: block;
+      width: spacing('small');
+
+      line-height: spacing('small');
+    }
+  }
+}
+
+  .affix-input__input {
+    padding-left: spacing('3x-large');
+  }
+
+  .affix-input__affix {
+    position: absolute;
+    top: 14px; left: spacing('small');
+
+    text-align: center;
+    line-height: 1;
+    color: color('grey-dark');
+  }

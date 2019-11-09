@@ -1,0 +1,76 @@
+.fancy-list {
+  @extend %list;
+
+  margin-bottom: -#{gutter('large')};
+
+  // Modifers
+  &--ordered {
+    counter-reset: fancy-list--ordered;
+
+    margin-bottom: -#{gutter()};
+
+    .fancy-list__item {
+      counter-increment: fancy-list--ordered;
+
+      padding-left: 36px; // spacing() + spacing('2x-small')
+      margin-bottom: gutter();
+
+      &::before {
+        content: counter(fancy-list--ordered);
+        top: 2px; bottom: auto; left: 0;
+        width: spacing();
+        height: spacing();
+
+        background-color: color('purple');
+        background-image: linear-gradient(180deg, rgba(white, 0.2) 0%, rgba(white, 0) 50%);
+        border-radius: border-radius();
+
+        text-align: center;
+        font-weight: font-weight('bold');
+        line-height: spacing();
+        color: white;
+
+        @include specify {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.fancy-list__item {
+  @extend %list__item;
+
+  position: relative;
+  z-index: z-index();
+
+  margin-bottom: gutter('large');
+
+  line-height: line-height();
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: spacing(); bottom: -#{spacing('2x-large')}; left: spacing();
+    z-index: z-index('negative');
+
+    border-left: 1px solid color('grey-2x-light');
+
+    @include state('last-child') {
+      display: none;
+    }
+  }
+}
+
+
+.ordered-list {
+  @extend %list;
+
+  margin-bottom: -#{gutter()};
+}
+
+  .ordered-list__item {
+    position: relative;
+
+    padding-left: spacing('2x-large');
+  }

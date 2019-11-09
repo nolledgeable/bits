@@ -1,0 +1,23 @@
+.message-form {
+  position: relative;
+  z-index: z-index();
+  overflow: hidden;
+}
+
+  .message-form__submit {
+    position: absolute;
+    bottom: 0; right: 0;
+    z-index: z-index('large');
+  }
+
+
+// .user-message {}
+
+  .user-message__name {
+    display: block;
+    max-width: spacing('huge');
+    overflow: hidden;
+
+    font-size: font-size('small');
+    text-overflow: ellipsis;
+  }

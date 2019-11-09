@@ -1,0 +1,20 @@
+.section {
+  position: relative;
+
+  padding: spacing('2x-large') spacing();
+
+  background-color: white;
+
+  // Modifiers
+  &--large {
+    padding: spacing('2x-huge') spacing();
+
+    @include breakpoint('small') {
+      padding: spacing('2x-large') spacing();
+    }
+  }
+
+  &--small {
+    padding: spacing();
+  }
+}

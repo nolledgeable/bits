@@ -1,0 +1,57 @@
+// Open source hamburger SVG with animation
+// @link https://codepen.io/ainalem/pen/LJYRxz
+// --------------------------------
+.ham {
+  @extend %icon;
+
+  width: spacing('2x-large');
+  height: spacing('2x-large');
+
+  margin-left: -#{spacing('2x-small')};
+
+  cursor: pointer;
+  transition: transform 0.2s transition();
+  user-select: none;
+
+  // Modifers
+  &--rotate {
+
+    @include state('phablet-primary-nav-is-active', 'body') {
+      transform: rotate(45deg);
+      transition: transform 0.4s transition();
+    }
+  }
+}
+
+.ham__line {
+  fill: none;
+  transition:
+    stroke-dasharray 0.2s transition(),
+    stroke-dashoffset 0.2s transition();
+  stroke: white;
+  stroke-width: 5.5;
+  stroke-linecap: round;
+
+  @include state('phablet-primary-nav-is-active', 'body') {
+    transition:
+      stroke-dasharray 0.4s transition(),
+      stroke-dashoffset 0.4s transition();
+  }
+
+  // Modifiers
+  &--top {
+    stroke-dasharray: 40 121;
+
+    @include state('phablet-primary-nav-is-active', 'body') {
+      stroke-dashoffset: -68px;
+    }
+  }
+
+  &--bottom {
+    stroke-dasharray: 40 121;
+
+    @include state('phablet-primary-nav-is-active', 'body') {
+      stroke-dashoffset: -68px;
+    }
+  }
+}

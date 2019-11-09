@@ -1,0 +1,28 @@
+// .tabs {}
+
+
+// .tab-link {}
+
+
+.tab-content {
+  height: 0;
+  width: 100%;
+  overflow: hidden;
+
+  transform: scale(0.96);
+  transform-origin: left top;
+
+  opacity: 0;
+
+  transition:
+    height 0.2s transition(),
+    transform 0.2s transition(),
+    opacity 0.2s transition();
+
+  @include state('is-active') {
+    height: auto;
+    transform: none;
+
+    opacity: 1;
+  }
+}

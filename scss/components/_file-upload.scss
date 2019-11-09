@@ -1,0 +1,41 @@
+.file-upload {
+  position: relative;
+  display: block;
+  height: 320px;
+
+  padding: spacing();
+
+  border: 1px dashed color('grey-2x-light');
+  border-radius: border-radius('small');
+
+  text-align: center;
+
+  cursor: pointer;
+
+  @include state(('hover', 'focus', 'is-active')) {
+    border: 1px solid color('grey-x-light');
+  }
+
+  @include state('is-active') {
+    background-color: color('grey-3x-light');
+  }
+
+  @include state('is-blocked') {
+    border: 1px dashed color('grey-2x-light');
+    cursor: default;
+  }
+}
+
+  .file-upload__input {
+    display: none;
+  }
+
+  .file-upload__image {
+    position: relative;
+    width: spacing('2x-large');
+    height: spacing('2x-large');
+    overflow: hidden;
+    z-index: z-index();
+
+    border-radius: border-radius();
+  }

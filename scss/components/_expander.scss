@@ -1,0 +1,54 @@
+.expander {
+  width: 100%;
+}
+
+  .expander__link {
+    display: block;
+    width: 100%;
+
+    margin-bottom: 0;
+
+    color: inherit;
+
+    @include state(('hover', 'focus')) {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
+  .expander__icon {
+    transform: none;
+
+    transition: transform 0.2s transition();
+
+    @include state(('hover', 'focus'), '.expander__link') {
+      color: color('blue');
+    }
+
+    @include state('is-active', '.expander') {
+      transform: rotate(180deg);
+    }
+  }
+
+  .expander__content {
+    height: 0;
+    width: 100%;
+    overflow: hidden;
+
+    transform: scale(0.96);
+    transform-origin: left top;
+
+    opacity: 0;
+
+    transition:
+      height 0.2s transition(),
+      transform 0.2s transition(),
+      opacity 0.2s transition();
+
+    @include state('is-active', '.expander') {
+      height: auto;
+      transform: none;
+
+      opacity: 1;
+    }
+  }

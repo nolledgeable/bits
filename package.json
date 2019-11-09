@@ -7,9 +7,12 @@
   "author": "nolle <nolle@iconis.ch>",
   "license": "MIT",
   "scripts": {
+    "build": "babel src ",
+    "test": "jest",
     "lint": "eslint src && stylelint src/**/*.scss"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0"
@@ -28,8 +31,9 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-standard": "^4.0.1",
     "husky": "^3.0.9",
+    "jest": "^24.9.0",
     "stylelint": "^11.1.1",
-    "stylelint-config-recommended-scss": "^4.0.0",
+    "stylelint-config-recommended": "^3.0.0",
     "stylelint-scss": "^3.12.1"
   }
 }

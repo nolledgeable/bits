@@ -1,0 +1,8 @@
+.map {
+  height: spacing('2x-huge');
+
+  // HACK: Force inner component so be 100% height
+  > * {
+    height: 100%;
+  }
+}

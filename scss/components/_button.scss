@@ -1,0 +1,192 @@
+@include extendable('button') {
+  display: inline-block;
+  height: spacing('2x-large');
+  vertical-align: middle;
+
+  padding: 0 spacing('large');
+
+  background-color: color('purple');
+  background-image: none;
+  border: 0;
+  border-radius: border-radius();
+
+  text-align: center;
+  font-family: font-family('heading');
+  font-size: font-size();
+  font-weight: font-weight('medium');
+  line-height: spacing('2x-large');
+  white-space: nowrap;
+  text-shadow: none;
+  color: white;
+
+  @include state(('hover', 'focus')) {
+    background-image: linear-gradient(180deg, rgba(white, 0.2) 0%, rgba(white, 0) 50%);
+    outline: 0;
+
+    text-decoration: none;
+    color: white;
+  }
+
+  @include state(('active', 'disabled', 'is-disabled')) {
+
+    @include specify {
+      background-image: none;
+    }
+  }
+
+  @include state(('disabled', 'is-disabled')) {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // Modifiers
+  &--small {
+    height: spacing('x-large');
+
+    padding: 0 spacing('x-small');
+
+    line-height: spacing('x-large');
+
+    &.button--circle {
+      width: spacing('x-large');
+    }
+
+    .button__icon {
+      width: font-size('medium');
+      height: font-size('medium');
+    }
+  }
+
+  &--large {
+    height: spacing('3x-large');
+
+    line-height: spacing('3x-large');
+  }
+
+  &--block {
+    width: 100%;
+
+    padding: 0;
+
+    border-radius: 0;
+  }
+
+  &--square,
+  &--circle {
+    width: spacing('2x-large');
+
+    padding: 0;
+
+    text-align: center;
+
+    &.button--small {
+      width: spacing('x-large');
+    }
+
+    &.button--large {
+      width: spacing('3x-large');
+    }
+  }
+
+  &--square {
+    border-radius: 0;
+  }
+
+  &--circle {
+    border-radius: 50%;
+  }
+
+  &--transparent {
+    background-color: transparent;
+  }
+
+  &--outline {
+    background-color: transparent;
+    box-shadow: inset 0 0 0 2px color('blue');
+
+    color: color('blue');
+
+    @include state(['hover', 'focus']) {
+      background-color: color('blue');
+
+      color: white;
+
+      @include specify {
+        box-shadow: none;
+      }
+    }
+
+    &.button--white {
+      box-shadow: inset 0 0 0 2px white;
+
+      color: white;
+
+      @include state(['hover', 'focus']) {
+        background-color: white;
+
+        color: color('blue');
+      }
+    }
+
+    &.button--purple {
+      box-shadow: inset 0 0 0 2px color('purple');
+
+      color: color('purple');
+
+      @include state(['hover', 'focus']) {
+        background-color: color('purple');
+
+        color: white;
+      }
+    }
+  }
+
+  // Brands
+  &--twitter {
+
+    @include state(('hover', 'focus')) {
+      background-color: color('twitter');
+    }
+  }
+
+  &--facebook {
+
+    @include state(('hover', 'focus')) {
+      background-color: color('facebook');
+    }
+  }
+
+  &--spotify {
+
+    @include state(('hover', 'focus')) {
+      background-color: color('spotify');
+    }
+  }
+
+  &--instagram {
+
+    @include state(('hover', 'focus')) {
+      background-color: color('instagram');
+    }
+  }
+}
+
+  .button__icon {
+    transform: none;
+
+    margin-right: spacing('4x-small');
+
+		// Modifiers
+    &--right {
+      margin-left: spacing('4x-small');
+      margin-right: 0;
+    }
+
+    &--animate {
+			transition: transform 0.2s transition();
+
+			@include state(('hover', 'focus'), '.button') {
+				transform: translateX(2px);
+			}
+		}
+  }

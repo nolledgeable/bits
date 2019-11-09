@@ -1,0 +1,18 @@
+.lqip {
+  width: 100%; max-width: 100%;
+  height: auto; max-height: 100%;
+
+  @include state('lazyloaded') {
+    width: auto;
+  }
+
+  // Modifiers
+  &--portrait {
+    width: auto;
+    height: 100%;
+
+    @include state('lazyloaded') {
+      height: auto;
+    }
+  }
+}

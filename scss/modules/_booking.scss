@@ -1,0 +1,158 @@
+.booking {
+  @extend %panel;
+
+  margin-top: #{spacing('3x-huge') / 2};
+  padding-top: 0;
+  padding-bottom: spacing('2x-large');
+
+  text-align: center;
+
+  // Modifiers
+  &--empty {
+    height: 273px;
+
+    background-color: transparent;
+    border: 1px dashed color('grey-2x-light');
+    box-shadow: none;
+
+    @include breakpoint('small') {
+      margin-top: 0;
+    }
+  }
+
+  &--data {
+    margin-top: 0;
+    padding-top: spacing();
+    padding-bottom: spacing();
+  }
+}
+
+  .booking__avatar {
+    margin-top: -#{spacing('3x-huge') / 2};
+    margin-bottom: spacing();
+  }
+
+// .booking-grid {}
+
+  .booking-grid__item {
+    width: 10%;
+    overflow: hidden;
+
+    vertical-align: middle;
+
+    @include breakpoint('large', 'down') {
+      width: 50%;
+    }
+
+    @include breakpoint(480px, 'down') {
+      width: 100%;
+    }
+
+    // Modifiers
+    &--large {
+      width: 20%;
+
+      @include breakpoint('large', 'down') {
+        width: 50%;
+      }
+
+      @include breakpoint(480px, 'down') {
+        width: 100%;
+      }
+    }
+
+    &--medium {
+      width: 15%;
+
+      @include breakpoint('large', 'down') {
+        width: 50%;
+      }
+
+      @include breakpoint(480px, 'down') {
+        width: 100%;
+      }
+    }
+  }
+
+
+// Single
+// --------------------------------
+.single-booking-back {
+  position: absolute;
+  top: 0; left: 0;
+}
+
+
+.single-booking-form {
+  position: relative;
+  overflow: hidden;
+
+  @include breakpoint('medium', 'up') {
+    padding-right: 320px + spacing('2x-large');
+  }
+
+  @include breakpoint(700px, 'up') {
+    padding-right: 280px + spacing('2x-large');
+  }
+}
+
+  .single-booking-form__total {
+    position: absolute;
+    top: 0; bottom: 0; right: 0;
+    width: 320px;
+
+    padding: spacing();
+
+    background-color: color('purple');
+
+    text-align: center;
+    color: color('white');
+
+    @include breakpoint('medium', 'down') {
+      width: 280px;
+    }
+
+    @include breakpoint(700px, 'down') {
+      position: relative;
+      width: auto;
+
+      margin: spacing('2x-large') -#{spacing('2x-large')} -#{spacing('2x-large')};
+    }
+
+    @include breakpoint('small') {
+      margin: spacing() -#{spacing()} -#{spacing()};
+    }
+  }
+
+
+// Agreement form
+// --------------------------------
+// .booking-agreement {}
+
+  .booking-agreement__label {
+    width: 240px;
+
+    line-height: line-height('small');
+    white-space: normal;
+
+    @include breakpoint(640px, 'down') {
+      width: 160px;
+    }
+
+    @include breakpoint('small') {
+      width: auto;
+    }
+  }
+
+  .booking-agreement__field-error {
+    margin-top: spacing('3x-small');
+    margin-left: 240px + spacing();
+
+    @include breakpoint(640px, 'down') {
+      margin-left: 160px + spacing();
+    }
+
+    @include breakpoint('small') {
+      margin-left: 0;
+    }
+  }

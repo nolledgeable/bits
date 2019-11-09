@@ -1,0 +1,81 @@
+.slick-slide {
+  vertical-align: top;
+  outline: 0;
+  text-align: center;
+
+  > img {
+    display: inline-block;
+  }
+}
+
+.slick-dots {
+  margin: spacing('huge') 0 0;
+
+  text-align: center;
+  font-size: 0;
+}
+
+  .slick-dots > li {
+    display: inline-block;
+    overflow: hidden;
+
+    margin-right: spacing('2x-small');
+
+    @include state('last-child') {
+      margin-right: 0;
+    }
+  }
+
+  .slick-dots > li button {
+    display: block;
+    width: spacing('x-large');
+    height: 6px;
+    overflow: hidden;
+
+    background-color: color('grey-2x-light');
+    border-radius: border-radius();
+
+    text-indent: off-screen();
+    line-height: 1;
+
+    @include state(('hover', 'focus')) {
+      background-color: color('grey-x-light');
+    }
+
+    @include state('slick-active', 'li') {
+      background-color: color('blue');
+    }
+  }
+
+
+// Slider component
+// --------------------------------
+.slider {
+  position: relative;
+  height: 100%;
+  z-index: z-index();
+
+  // Modifiers
+  &--is-adaptive {
+    height: auto;
+  }
+}
+
+  .slider__prev,
+  .slider__next {
+    position: absolute;
+    top: calc(50% - #{spacing()});
+    width: spacing('huge');
+    height: spacing('huge');
+    z-index: z-index('large');
+
+    line-height: spacing('huge');
+  }
+
+  .slider__prev {
+    left: spacing('2x-large');
+  }
+
+  .slider__next {
+    right: spacing('2x-large');
+  }

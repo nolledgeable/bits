@@ -1,0 +1,45 @@
+.pagination-wrapper {
+  text-align: right;
+
+  @include breakpoint('large', 'down') {
+    text-align: center;
+  }
+}
+
+
+.pagination {
+  display: inline-block;
+
+  padding: spacing('3x-small') spacing('small');
+
+  background-color: color('white');
+  border-radius: border-radius();
+  box-shadow: shadow('large');
+
+  text-align: center;
+
+  @include breakpoint('small') {
+    display: block;
+  }
+}
+
+  .pagination__item {
+    width: spacing('large');
+
+    border-radius: border-radius();
+
+    text-align: center;
+    font-weight: bold;
+    line-height: spacing('large');
+    color: color('purple');
+
+    @include state(('hover', 'focus')) {
+      background-color: color('grey-3x-light');
+      color: color('purple-dark');
+    }
+
+    @include state('is-active') {
+      background-color: color('purple');
+      color: color('white');
+    }
+  }

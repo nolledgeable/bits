@@ -1,0 +1,148 @@
+// Range slider
+// --------------------------------
+.rangeslider-wrapper {
+  position: relative;
+}
+
+.rangeslider-input {
+  display: none;
+}
+
+.rangeslider-tooltip {
+  position: relative;
+  display: inline-block;
+  transform: translateX(-50%);
+
+  padding: spacing();
+  margin-bottom: spacing();
+
+  background-color: white;
+  border-radius: border-radius('small');
+  box-shadow: shadow('x-large');
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -#{spacing('2x-small')};
+    left: calc(50% - #{spacing('2x-small')});
+    width: 0;
+    height: 0;
+
+    border-width: spacing('2x-small') spacing('2x-small') 0;
+    border-style: solid solid none;
+    border-color: white transparent transparent;
+  }
+
+  // Modifiers
+  &--bottom {
+    margin-top: spacing();
+    margin-bottom: 0;
+
+    &::before {
+      top: -#{spacing('2x-small')}; bottom: auto;
+
+      border-width: 0 spacing('2x-small') spacing('2x-small');
+      border-style: none solid solid;
+      border-color: transparent transparent white;
+    }
+  }
+
+  &--small {
+    margin: 0;
+    padding: spacing('2x-small');
+
+    box-shadow: shadow('large');
+
+    &::before {
+      display: none;
+    }
+  }
+}
+
+
+.rangeslider {
+  position: relative;
+
+  margin: spacing('small') 0;
+
+  background-color: color('grey-2x-light');
+  border-radius: border-radius();
+
+  // Modifiers
+  &--active {
+
+    .rangeslider__handle {
+      cursor: grab;
+    }
+  }
+
+  &--horizontal {
+    height: spacing('2x-small');
+
+    .rangeslider__fill {
+      top: 0;
+      height: 100%;
+    }
+
+    .rangeslider__handle {
+      top: -14px;
+
+      touch-action: pan-y;
+    }
+  }
+
+  &--small {
+    height: spacing('3x-small');
+
+    margin: spacing('2x-small') 0;
+
+    .rangeslider__fill {
+      background-color: color('blue');
+    }
+
+    .rangeslider__handle {
+      top: -#{spacing('3x-small')};
+      width: spacing();
+      height: spacing();
+
+      background-color: color('blue');
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+
+  .rangeslider__fill {
+    position: absolute;
+    border-radius: border-radius() 0 0 border-radius();
+  }
+
+
+  .rangeslider__handle {
+    @extend %button;
+
+    position: absolute;
+    width: spacing('x-large');
+    height: spacing('x-large');
+
+    padding: 0;
+
+    box-shadow: 0 0 0 4px white;
+
+    line-height: spacing('x-large');
+
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      @include absolute-child;
+
+      background-image: svg-load('#{$image-path}/handle.svg', fill=white);
+      background-position: center;
+      background-size: spacing('small');
+      background-repeat: no-repeat;
+    }
+  }

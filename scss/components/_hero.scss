@@ -1,0 +1,17 @@
+.hero {
+  height: spacing('2x-giant');
+  padding: spacing();
+
+  background-color: color('blue');
+
+  @include breakpoint('small') {
+    height: spacing('giant');
+  }
+
+  // Modifiers
+  &--auto {
+    height: auto;
+
+    // padding: spacing('2x-large') spacing();
+  }
+}

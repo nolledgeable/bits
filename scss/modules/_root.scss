@@ -1,0 +1,10 @@
+.root {
+  position: relative;
+  flex: 1 1 auto;
+
+  padding-top: 81px; // Room for fixed header
+
+  @include breakpoint('medium', 'down') {
+    padding-top: 61px; // Room for fixed header
+  }
+}

@@ -1,0 +1,20 @@
+.price-rating {
+
+  // Modifiers
+  &--white .price-rating__item--empty {
+    color: color('white-light');
+  }
+}
+
+  .price-rating__item {
+    font-size: font-size('large');
+    font-weight: font-weight('bold');
+    line-height: line-height('x-small');
+    letter-spacing: 1px;
+    color: color('yellow');
+
+    // Modifiers
+    &--empty {
+      color: color('grey-2x-light');
+    }
+  }

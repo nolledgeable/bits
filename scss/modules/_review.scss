@@ -1,0 +1,52 @@
+// Stars
+.review-rating {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  white-space: nowrap;
+  color: color('yellow');
+
+  // Modifiers
+  &--white .review-rating__item--empty {
+    color: color('white-light');
+  }
+}
+
+  .review-rating__item {
+    top: -3px; // HACK: Valign correct
+    width: spacing('small');
+    height: spacing('small');
+  }
+
+
+// .review {}
+
+  .review__avatar-wrapper {
+    text-align: center;
+    white-space: normal;
+
+    @include specify(2) {
+
+      @include breakpoint('small', 'up') {
+        padding-left: spacing('large');
+      }
+    }
+  }
+
+
+.review-radio {
+  position: relative;
+  overflow: hidden;
+}
+
+  .review-radio__input {
+    position: absolute;
+    top: 0; left: off-screen();
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .review-radio__icon {
+    fill: color('yellow');
+  }

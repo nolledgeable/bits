@@ -1,0 +1,65 @@
+// Item
+.photography-type {
+  text-align: center;
+}
+
+
+// Checkbox
+.photography-type-checkbox {
+  position: relative;
+
+  margin: 0 auto;
+
+  @include breakpoint('small') {
+    max-width: spacing('2x-giant');
+  }
+
+  // Checked state
+  @at-root {
+
+    .photography-type-checkbox__input:checked + .photography-type-checkbox__label {
+      @extend %photography-type-checkbox--is-active;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: spacing('3x-small'); right: spacing('3x-small');
+        width: spacing();
+        height: spacing();
+
+        background-image: svg-load('#{$image-path}/check-circle.svg', fill=color('green'));
+      }
+    }
+  }
+}
+
+  .photography-type-checkbox__inner {
+    padding-top: 100%;
+  }
+
+  %photography-type-checkbox--is-active {
+    border: 1px solid color('grey-x-light');
+
+    color: color('grey-dark')
+  }
+
+  .photography-type-checkbox__input {
+    position: absolute;
+    left: off-screen();
+
+    opacity: 0;
+  }
+
+  .photography-type-checkbox__label {
+    @include absolute-child;
+
+    border: 1px dashed color('grey-2x-light');
+    border-radius: border-radius('small');
+
+    text-align: center;
+    color: color('grey-light');
+
+    @include state('hover') {
+      @extend %photography-type-checkbox--is-active;
+    }
+  }

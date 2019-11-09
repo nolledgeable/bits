@@ -1,0 +1,36 @@
+.figure {
+  position: relative;
+  z-index: z-index();
+
+  padding-top: 100%;
+
+  text-align: center;
+
+  // Modifiers
+  &--3x-huge {
+    width: spacing('3x-huge');
+    height: spacing('3x-huge');
+
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0;
+  }
+}
+
+  .figure__inner {
+    @include absolute-child;
+    z-index: z-index('large');
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+
+      margin-right: -1px;
+    }
+  }

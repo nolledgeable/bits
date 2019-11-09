@@ -1,0 +1,29 @@
+.logo {
+  display: inline-block;
+  width: 92px;
+  height: 28px;
+  vertical-align: middle;
+  overflow: hidden;
+
+  background-image: svg-load('#{$image-path}/logo.svg', fill=color('grey-dark'));
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  text-indent: -9999px;
+
+
+  // Modifiers
+  &--white {
+    background-image: svg-load('#{$image-path}/logo.svg', fill=white);
+  }
+
+  &--large {
+    width: 92px * 1.75;
+    height: 28px * 1.75;
+  }
+}
+
+.logo-link {
+  display: inline-block;
+}
