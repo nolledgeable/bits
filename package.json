@@ -1,16 +1,22 @@
 {
   "name": "@iconisch/bits",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A lightweight and simple React component library",
-  "main": "src/index.js",
+  "main": "build/index.js",
   "repository": "git@github.com:iconisch/bits.git",
   "author": "nolle <nolle@iconis.ch>",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "README.md",
+    "src",
+    "build"
+  ],
   "scripts": {
-    "build": "babel src ",
+    "develop": "babel src --watch --out-dir build --copy-files",
+    "build": "babel src --out-dir build --copy-files",
     "test": "jest",
     "lint": "eslint src && stylelint src/**/*.scss"
   },
@@ -21,6 +27,7 @@
     "react-dom": "^16.11.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.7.0",
     "@babel/core": "^7.7.2",
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
     "@babel/preset-env": "^7.7.1",

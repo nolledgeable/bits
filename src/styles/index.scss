@@ -10,12 +10,22 @@
 // Global
 // --------------------------------
 @import 'global/config';
-@import 'global/base';
+@import 'global/elements';
+
+@if $load-elements {
+  @include load-elements();
+}
+
 
 // Utilities
 // --------------------------------
 @import 'utilities/utilities';
 
+
 // Components
 // --------------------------------
 @import '../components/Grid/index.scss';
+
+@if $load-components {
+  @include load-component-Grid();
+}

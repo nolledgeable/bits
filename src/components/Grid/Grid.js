@@ -31,7 +31,7 @@ const Grid = ({
 
   return (
     <Element className={joinedClassNames} {...rest}>
-      {children}
+      {children} Hi
     </Element>
   );
 };

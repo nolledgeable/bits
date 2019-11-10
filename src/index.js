@@ -1,4 +1,4 @@
-// Import base styles
+// Import styles
 import './styles';
 
 // Export components

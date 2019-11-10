@@ -74,7 +74,7 @@
 }
 
 @function abbreviate($term, $chars: 1, $splitter: '-') {
-  $parts: str-split($term);
+  $parts: str-split($term, $splitter);
   $abbr-term: '';
   @each $part in $parts {
     $abbr: str-slice($part, 1, $chars);

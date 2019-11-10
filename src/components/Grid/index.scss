@@ -1,26 +1,18 @@
-@include extendable('grid') {
-  display: block;
-  list-style: none;
+@mixin load-component-Grid {
+  @include extendable('grid') {
+    display: block;
+    list-style: none;
 
-  margin-bottom: -(gutter());
-  margin-left: -(gutter());
+    margin-bottom: -(gutter());
+    margin-left: -(gutter());
 
-  text-align: left;
-  font-size: 0;
-  white-space: normal;
+    text-align: left;
+    font-size: 0;
+    white-space: normal;
 
 
-  // Modifiers
-  &--flush {
-    margin-bottom: 0;
-    margin-left: 0;
-
-    > .grid__item {
-      margin-bottom: 0;
-      padding-left: 0;
-    }
-
-    @include responsive {
+    // Modifiers
+    &--flush {
       margin-bottom: 0;
       margin-left: 0;
 
@@ -28,79 +20,88 @@
         margin-bottom: 0;
         padding-left: 0;
       }
-    }
-  }
 
-  @each $gutter-name, $gutter in $gutters {
-
-    &--#{$gutter-name} {
-      margin-bottom: -$gutter;
-      margin-left: -$gutter;
-
-      > .grid__item {
-        margin-bottom: $gutter;
-        padding-left: $gutter;
-      }
-    }
-  }
-
-  &--middle > .grid__item {
-    vertical-align: middle;
-  }
-
-  &--bottom > .grid__item {
-    vertical-align: bottom;
-  }
-
-  @each $denominator in $grid-denominators {
-    $width: percentage(1 / $denominator);
-
-    &--#{$denominator} > .grid__item {
-      width: $width;
-    }
-  }
-
-
-  // Responsive
-  &--1 {
-
-    @include responsive() {
-
-      > .grid__item {
-        width: 100%;
-      }
-    }
-  }
-
-  @each $denominator in $grid-denominators {
-    $width: percentage(1 / $denominator);
-
-    &--#{$denominator} {
-      @include responsive() {
+      @include responsive {
+        margin-bottom: 0;
+        margin-left: 0;
 
         > .grid__item {
-          width: $width;
+          margin-bottom: 0;
+          padding-left: 0;
         }
       }
     }
-  }
 
-  &--rtl {
-    direction: rtl;
+    @each $gutter-name, $gutter in $gutters {
 
-    @include responsive {
+      &--#{$gutter-name} {
+        margin-bottom: -$gutter;
+        margin-left: -$gutter;
+
+        > .grid__item {
+          margin-bottom: $gutter;
+          padding-left: $gutter;
+        }
+      }
+    }
+
+    &--middle > .grid__item {
+      vertical-align: middle;
+    }
+
+    &--bottom > .grid__item {
+      vertical-align: bottom;
+    }
+
+    @each $denominator in $grid-denominators {
+      $width: percentage(1 / $denominator);
+
+      &--#{$denominator} > .grid__item {
+        width: $width;
+      }
+    }
+
+
+    // Responsive
+    &--1 {
+
+      @include responsive() {
+
+        > .grid__item {
+          width: 100%;
+        }
+      }
+    }
+
+    @each $denominator in $grid-denominators {
+      $width: percentage(1 / $denominator);
+
+      &--#{$denominator} {
+        @include responsive() {
+
+          > .grid__item {
+            width: $width;
+          }
+        }
+      }
+    }
+
+    &--rtl {
       direction: rtl;
+
+      @include responsive {
+        direction: rtl;
+      }
     }
-  }
 
-  &--ltr {
-    direction: ltr;
-
-    @include responsive {
+    &--ltr {
       direction: ltr;
+
+      @include responsive {
+        direction: ltr;
+      }
     }
   }
-}
 
 
   @include extendable('grid__item') {
@@ -141,3 +142,4 @@
       }
     }
   }
+}
