@@ -1,42 +1,42 @@
 // Return value from global variable maps
 // --------------------------------
-@function gutter($key: 'd', $unit: 'px') {
+@function gutter($key: 'default') {
   @return map-get($gutters, $key);
 }
 
-@function wrapper($key: 'd') {
+@function wrapper($key: 'default') {
   @return map-get($wrapper-widths, $key);
 }
 
-@function spacing($key: 'd') {
+@function spacing($key: 'default') {
   @return map-get($spacing-units, $key);
 }
 
-@function z-index($key: 'd') {
+@function z-index($key: 'default') {
   @return map-get($z-indexes, $key);
 }
 
-@function border-radius($key: 'd') {
+@function border-radius($key: 'default') {
   @return map-get($border-radii, $key);
 }
 
-@function shadow($key: 'd') {
+@function shadow($key: 'default') {
   @return map-get($shadows, $key) rgba(black, .15);
 }
 
-@function font-family($key) {
+@function font-family($key: 'body') {
   @return map-get($font-families, $key);
 }
 
-@function font-size($key: 'd') {
+@function font-size($key: 'default') {
   @return map-get($font-sizes, $key);
 }
 
-@function font-weight($key: 'n') {
+@function font-weight($key: 'normal') {
   @return map-get($font-weights, $key);
 }
 
-@function line-height($key: 'd') {
+@function line-height($key: 'default') {
   @return map-get($line-heights, $key);
 }
 
@@ -61,12 +61,12 @@
 
 @function str-split($string, $splitter: '-') {
   $parts: ();
-  $index : str-index($string, $splitter);
+  $index: str-index($string, $splitter);
   @while $index {
     $part: str-slice($string, 1, $index - 1);
     $parts: append($parts, $part);
     $string: str-slice($string, $index + 1);
-    $index : str-index($string, $splitter);
+    $index: str-index($string, $splitter);
   }
   $parts: append($parts, $string);
 
@@ -74,10 +74,24 @@
 }
 
 @function abbreviate($term, $chars: 1, $splitter: '-') {
+  $term: to-str($term);
   $parts: str-split($term, $splitter);
   $abbr-term: '';
   @each $part in $parts {
-    $abbr: str-slice($part, 1, $chars);
+    $abbr: '';
+    @if
+      $part == 'none' or
+      $part == 'hidden' {
+      $abbr: '0';
+    }
+    @else if
+      str-length($part) <= 2 and
+      str-index($part, 'x') {
+      $abbr: $part
+    }
+    @else {
+      $abbr: str-slice($part, 1, $chars);
+    }
     $abbr-term: $abbr-term + $abbr;
   }
   @return $abbr-term;

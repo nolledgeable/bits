@@ -9,7 +9,7 @@ const GridItem = ({
   children,
   className = '',
   element: Element = 'div',
-  size = 1,
+  size = '1',
   ...rest
 }) => {
   const joinedClassNames = classNames(
@@ -31,7 +31,7 @@ GridItem.propTypes = {
   className: PropTypes.string,
   element: PropTypes.string,
   size: PropTypes.oneOfType([
-    PropTypes.number,
+    PropTypes.string,
     PropTypes.object
   ])
 };

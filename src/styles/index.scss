@@ -11,15 +11,15 @@
 // --------------------------------
 @import 'global/config';
 @import 'global/elements';
+@import 'global/utilities';
 
 @if $load-elements {
   @include load-elements();
 }
 
-
-// Utilities
-// --------------------------------
-@import 'utilities/utilities';
+@if $load-utilities {
+  @include load-utilities();
+}
 
 
 // Components

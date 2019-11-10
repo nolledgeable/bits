@@ -2,6 +2,7 @@
 // --------------------------------
 $load-elements: true;
 $load-components: true;
+$load-utilities: true;
 
 
 // Paths
@@ -19,35 +20,35 @@ $rem-in-px: 16px !default;
 // --------------------------------
 $breakpoints: (
   // Mobile
-  's': 320px,
-  'sl': 568px,
+  'small': 320px,
+  'small-landscape': 568px,
   // Tablets
-  'm': 768px,
-  'ml': 1024px,
+  'medium': 768px,
+  'medium-landscape': 1024px,
   // Laptop/desktop
-  'l': 1200px,
+  'large': 1200px,
 ) !default;
 
 
 // Wrapper object widths
 // --------------------------------
 $wrapper-widths: (
-  '2xs': 320px,
-  'xs': 480px,
-  's': 640px,
-  'd': 960px,
-  'l': 1280px,
-  'xl': 1440px
+  '2x-small': 320px,
+  'x-small': 480px,
+  'small': 640px,
+  'default': 960px,
+  'large': 1280px,
+  'x-large': 1440px
 ) !default;
 
 
 // Gutters
 // --------------------------------
 $gutters: (
-  'xs': 12px,
-  's': 24px,
-  'd': 32px,
-  'l': 48px
+  'x-small': 12px,
+  'small': 24px,
+  'default': 32px,
+  'large': 48px
 ) !default;
 
 
@@ -59,46 +60,46 @@ $grid-denominators: 2, 3, 4 !default;
 // Z-indexes
 // --------------------------------
 $z-indexes: (
-  'n': -11,
-  'd': 0,
-  'l': 11,
-  'xl': 22,
-  '2xl': 33,
-  '3xl': 44,
-  '4xl': 55,
-  'h': 66,
-  'xh': 77
+  'none': -11,
+  'default': 0,
+  'large': 11,
+  'x-large': 22,
+  '2x-large': 33,
+  '3x-large': 44,
+  '4x-large': 55,
+  'huge': 66,
+  'x-huge': 77
 ) !default;
 
 
 // Spacing units
 // --------------------------------
 $spacing-units: (
-  '0': 0,
-  '4xs': 4px,
-  '3xs': 6px,
-  '2xs': 8px,
-  'xs': 12px,
-  's': 16px,
-  'd': 24px,
-  'l': 32px,
-  'xl': 48px,
-  '2xl': 64px,
-  '3xl': 96px,
-  '4xl': 128px
+  'none': 0,
+  '4x-small': 4px,
+  '3x-small': 6px,
+  '2x-small': 8px,
+  'x-small': 12px,
+  'small': 16px,
+  'default': 24px,
+  'large': 32px,
+  'x-large': 48px,
+  '2x-large': 64px,
+  '3x-large': 96px,
+  '4x-large': 128px
 ) !default;
 
-$margins: ('0', '2xs', 'd', 'xl') !default;
-$paddings: ('xs', 'd') !default;
+$margins: ('none', '2x-small', 'default', 'x-large') !default;
+$paddings: ('x-small', 'default') !default;
 
 
 // Border radii
 // --------------------------------
 $border-radii: (
-  '0': 0,
-  's': 2px,
-  'd': 4px,
-  'l': 8px,
+  'none': 0,
+  'small': 2px,
+  'default': 4px,
+  'large': 8px,
   'infinite': infinite() // Rounded
 ) !default;
 
@@ -106,11 +107,11 @@ $border-radii: (
 // Shadows
 // --------------------------------
 $shadows: (
-  's': (0 1px 2px),
-  'd': (0 2px 4px),
-  'l': (0 2px 8px),
-  'xl': (0 4px 16px),
-  '2xl': (0 4px 32px)
+  'small': (0 1px 2px),
+  'default': (0 2px 4px),
+  'large': (0 2px 8px),
+  'x-large': (0 4px 16px),
+  '2x-large': (0 4px 32px)
 ) !default;
 
 
@@ -126,28 +127,28 @@ $font-families: (
 // Font weight
 // --------------------------------
 $font-weights: (
-  'b': 700,
-  'n': 400
+  'bold': 700,
+  'normal': 400
 ) !default;
 
 // Font-sizes
 // --------------------------------
 $font-sizes: (
-  'xs': 0.75rem,
-  's': 0.875rem,
-  'd': 1rem,
-  'l': 1.125rem,
-  'xl': 1.25rem,
-  '2xl': 1.5rem,
-  '3xl': 2rem,
-  '4xl': 2.5rem,
-  'h': 3rem,
-  'xh': 4rem,
+  'x-small': 0.75rem,
+  'small': 0.875rem,
+  'default': 1rem,
+  'large': 1.125rem,
+  'x-large': 1.25rem,
+  '2x-large': 1.5rem,
+  '3x-large': 2rem,
+  '4x-large': 2.5rem,
+  'huge': 3rem,
+  'x-huge': 4rem,
 ) !default;
 
 // Heading font-sizes for small and default screens
 $heading-font-sizes: (
-  's': (
+  'small': (
     1: font-size('2x-large'),
     2: font-size('x-large'),
     3: font-size('large'),
@@ -155,7 +156,7 @@ $heading-font-sizes: (
     5: font-size(),
     6: font-size()
   ),
-  'm': (
+  'medium': (
     1: font-size('3x-large'),
     2: font-size('2x-large'),
     3: font-size('x-large'),
@@ -163,7 +164,7 @@ $heading-font-sizes: (
     5: font-size(),
     6: font-size()
   ),
-  'l': (
+  'large': (
     1: font-size('4x-large'),
     2: font-size('3x-large'),
     3: font-size('x-large'),

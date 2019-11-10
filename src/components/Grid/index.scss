@@ -34,7 +34,7 @@
 
     @each $gutter-name, $gutter in $gutters {
 
-      &--#{$gutter-name} {
+      &--#{abbreviate($gutter-name)} {
         margin-bottom: -$gutter;
         margin-left: -$gutter;
 
