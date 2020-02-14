@@ -1,0 +1,27 @@
+@mixin load-component-Icon {
+  @include extendable('icon') {
+    position: relative;
+    display: inline-block;
+    top: -1px; // HACK: valign adjust
+    width: spacing();
+    height: spacing();
+    vertical-align: middle;
+
+    fill: currentColor;
+
+    // Modifiers
+    &--pre,
+    &--post {
+      width: spacing('small');
+      height: spacing('small');
+    }
+
+    &--pre {
+      margin-right: spacing('4x-small');
+    }
+
+    &--post {
+      margin-left: spacing('4x-small');
+    }
+  }
+}

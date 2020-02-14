@@ -1,0 +1,80 @@
+@mixin load-component-List {
+  @include extendable('list') {
+    list-style: none;
+
+    margin: 0;
+
+    // Modifiers
+    &--inline {
+      display: flex;
+      list-style: none;
+
+      margin-bottom: -#{gutter('default', $list-gutters)};
+      padding: 0;
+
+      > .list__item {
+        margin-right: gutter('default', $list-gutters);
+        margin-bottom: gutter('default', $list-gutters);
+
+        line-height: inherit;
+
+        @include state('last-child') {
+
+          @include specify {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    @each $gutter-key, $gutter in $list-gutters {
+
+      &--#{abbreviate($gutter-key)} {
+        margin-bottom: -$gutter;
+
+        > .list__item {
+            margin-bottom: $gutter;
+
+          @include state('last-child') {
+            margin-bottom: $gutter;
+          }
+        }
+
+        &.list--inline > .list__item {
+          margin-right: $gutter;
+        }
+      }
+    }
+
+    &--border {
+
+      > .list__item {
+        padding-bottom: gutter('default', $list-gutters);
+        margin-bottom: gutter('default', $list-gutters);
+
+        border-bottom: 1px solid color('grey-2x-light');
+
+        @include state('last-child') {
+          border-bottom: 0;
+        }
+      }
+
+      @each $gutter-key, $gutter in $list-gutters {
+
+        &.list--#{abbreviate($gutter-key)} > .list__item {
+          padding-bottom: $gutter;
+        }
+      }
+    }
+  }
+
+  @include extendable('list__item') {
+    margin-bottom: gutter('default', $list-gutters);
+
+    line-height: line-height('small');
+
+    @include state('last-child') {
+      margin-bottom: 0;
+    }
+  }
+}

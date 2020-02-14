@@ -2,22 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import { getResponsiveClasses } from '../../helpers';
 
-
-const GridItem = ({
+const Panel = ({
   children,
   className = '',
   element: Element = 'div',
-  size = '',
   ...rest
 }) => {
   const classNames = cx(
-    'grid__item',
-    {
-      [`grid__item--${size}`]: size
-    },
-    getResponsiveClasses(size, 'grid__item'),
+    'panel',
     className
   );
 
@@ -29,15 +22,11 @@ const GridItem = ({
 };
 
 
-GridItem.propTypes = {
+Panel.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  element: PropTypes.oneOf(['li', 'div']),
-  size: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.objectOf(PropTypes.string)
-  ])
+  element: PropTypes.oneOf(['div', 'article', 'section'])
 };
 
 
-export default GridItem;
+export default Panel;

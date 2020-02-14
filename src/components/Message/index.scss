@@ -1,0 +1,35 @@
+@mixin load-component-Message {
+  @include extendable('message') {
+    display: block;
+
+    text-align: left;
+    font-weight: font-weight('bold');
+    white-space: normal;
+    color: color('warning');
+
+    // Modifiers
+    &--#{abbreviate('block')} {
+      padding: spacing();
+
+      background-color: lighten(color('warning'), 44%);
+      border-radius: border-radius();
+
+      font-size: font-size('small');
+      font-weight: font-weight('bold');
+      line-height: line-height('small');
+
+      // Modifiers
+      &--#{abbreviate('error')} {
+        background-color: lighten(color('error'), 44%);
+
+        color: color('error')
+      }
+
+      &--#{abbreviate('success')} {
+        background-color: lighten(color('success'), 44%);
+
+        color: color('success')
+      }
+    }
+  }
+}

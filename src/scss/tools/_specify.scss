@@ -1,0 +1,84 @@
+// Mixin to increase levels of specificity
+// @author    nolle@iconis.ch
+// @version   1.0.0
+// @param     {Number} $level - Specificity levels to add to current selector
+@mixin specify($level: 1) {
+  // $final-sels  final selectors
+  // $sel     selector
+  // $final-sel   final $sel
+  // $last    last selector in selector
+  // $final-last  final $last
+  // $simple-last  simple selectors from $last
+  // $specifier-i    index of specifier
+  // $specifier      specifier
+  // $final-specifier    final $specifier
+  // $pseudo      pseudo class or element
+
+  // Define list of final selectors
+  $final-sels: ();
+
+  // Throw error if level is lower than 1
+  @if $level < 1 {
+    @error 'Minimal specificity level to add is 1.';
+  }
+
+  // Loop over each selector in &
+  @for $i from 1 through length(&) {
+    // Get selector from current index in &
+    $sel: nth(&, $i);
+
+    // Get last selector in selector
+    $last: nth($sel, length($sel));
+
+    // Convert last selector to list of simple selectors
+    $simple-last: simple-selectors($last);
+
+    // Check which simple selector is a suitable specifier
+    $specifier-i: length($simple-last);
+    $specifier: nth($simple-last, $specifier-i);
+    $pseudo: str-index($specifier, ':');
+
+    // Keep checking for suitable specifier while simple selector
+    // is pseudo class or element
+    @while $pseudo {
+      $specifier-i: $specifier-i - 1;
+      $specifier: nth($simple-last, $specifier-i);
+      $pseudo: str-index($specifier, ':');
+    }
+
+    // Repeat specifier $level extra times to create final specifier
+    $n: $level;
+    $final-specifier: $specifier;
+
+    @while $n > 0 {
+      $n: $n - 1;
+      $final-specifier: $final-specifier + $specifier;
+    }
+
+    // Replace specifier with final specifier in list of simple selectors
+    // to create final list of simple selectors
+    $f-s-last: set-nth($simple-last, $specifier-i, $final-specifier);
+
+    // Turn final list of simple selectors back to compound selector
+    // to create final last selector in selector
+    $n: 1;
+    $final-last: nth($f-s-last, 1);
+
+    @while $n < length($simple-last) {
+      $n: $n + 1;
+      $final-last: selector-append($final-last, nth($f-s-last, $n));
+    }
+
+    // Replace last selector with final last selector in selector
+    // to create final selector
+    $final-sel: set-nth($sel, length($sel), $final-last);
+
+    // Add final selector to list of final selectors
+    $final-sels: append($final-sels, $final-sel, comma);
+  }
+
+  // Output list of final selectors with content
+  @at-root #{$final-sels} {
+    @content;
+  }
+}

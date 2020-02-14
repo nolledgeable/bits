@@ -1,0 +1,193 @@
+
+
+
+// Hr and title component
+// --------------------------------
+.hr-title {
+  position: relative;
+  z-index: z-index();
+
+  text-align: center;
+
+  @include breakpoint('small') {
+    text-align: left;
+  }
+
+  // Modifiers
+  &--left {
+    text-align: left;
+
+    .hr-title__title {
+      padding-left: 0;
+    }
+  }
+}
+
+  .hr-title__hr {
+    position: absolute;
+    bottom: 50%; left: 0; right: 0;
+    z-index: z-index('negative');
+  }
+
+  .hr-title__title {
+    display: inline-block;
+
+    padding: 0 spacing();
+
+    background-color: white;
+
+    @include breakpoint('small') {
+      padding-left: 0;
+    }
+  }
+
+
+// Meta
+// --------------------------------
+@include extendable('meta') {
+  display: inline-block;
+
+  font-weight: font-weight('medium');
+  line-height: line-height('x-small');
+}
+
+
+// Link
+// --------------------------------
+@include extendable('link') {
+	display: inline-block;
+
+	font-weight: font-weight('medium');
+  line-height: line-height('x-small');
+	color: color('blue');
+
+	@include state(('hover', 'focus')) {
+		text-decoration: none;
+		color: color('blue-dark');
+	}
+
+
+	// Modifiers
+  &--underline {
+    box-shadow: 0 1px currentColor;
+
+    font-weight: font-weight('normal');
+  }
+
+  &--small {
+    font-size: font-size('small');
+    font-weight: font-weight('normal');
+  }
+
+	&--white {
+		color: white;
+
+		@include state(('hover', 'focus')) {
+			color: color('white-light');
+		}
+	}
+
+  &--error {
+		color: color('error');
+
+		@include state(('hover', 'focus')) {
+			color: color('error-dark');
+		}
+	}
+
+  &--white-light {
+    color: color('white-light');
+
+		@include state(('hover', 'focus')) {
+      color: white;
+		}
+	}
+
+  &--grey-light {
+		color: color('grey-light');
+
+		@include state(('hover', 'focus')) {
+			color: color('grey');
+		}
+	}
+
+  &--grey-dark {
+		color: color('grey-dark');
+
+		@include state(('hover', 'focus')) {
+			color: color('grey');
+		}
+	}
+
+  &--purple {
+		color: color('purple');
+
+		@include state(('hover', 'focus')) {
+			color: color('purple-dark');
+		}
+	}
+}
+
+
+// Message
+// --------------------------------
+
+
+
+// Horizontal rule
+// --------------------------------
+.hr {
+	position: relative;
+	display: block;
+
+	border-bottom: 1px solid color('grey-x-light');
+}
+
+
+// Blurred text
+// --------------------------------
+.blur-text {
+  font-weight: font-weight('bold');
+
+  filter: blur(2px);
+  opacity: 0.8;
+}
+
+
+// Tags
+// --------------------------------
+.tag {
+  display: inline-block;
+
+  padding: 0 spacing('x-small');
+
+  background-color: color('blue');
+  border-radius: border-radius();
+
+  font-weight: font-weight('medium');
+  line-height: spacing();
+  color: color('white');
+  white-space: nowrap;
+
+  // Modifiers
+  &--rejected {
+    background-color: color('error');
+  }
+
+  &--pending {
+    background-color: color('warning');
+  }
+
+  &--new {
+    background-color: color('purple');
+  }
+
+  &--approved {
+    background-color: color('success');
+    color: color();
+  }
+
+  &--completed {
+    background-color: color('info');
+  }
+}

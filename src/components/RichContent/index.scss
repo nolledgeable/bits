@@ -1,0 +1,21 @@
+@mixin load-component-RichContent {
+  @include extendable('rich-content') {
+
+  	ul,
+  	ol {
+  		padding-left: 1em;
+
+  		@include state('last-child') {
+  			margin-bottom: 0;
+  		}
+  	}
+
+  	ul {
+  		list-style: square;
+  	}
+
+  	ol {
+  		list-style: decimal;
+  	}
+  }
+}

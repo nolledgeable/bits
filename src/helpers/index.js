@@ -1,7 +1,7 @@
-export const getResponsiveClasses = (breakpointModifiers, base) => (
-  typeof breakpointModifiers === 'object'
-    ? Object.keys(breakpointModifiers).map(breakpoint => (
-      `${abbreviate(breakpoint)}:${base}--${breakpointModifiers[breakpoint]}`)
+export const getResponsiveClasses = (breakpointKeys, base) => (
+  typeof breakpointKeys === 'object'
+    ? Object.keys(breakpointKeys).map(breakpointKey => (
+      `${abbreviate(breakpointKey)}:${base}--${breakpointKeys[breakpointKey]}`)
     )
     : []
 );

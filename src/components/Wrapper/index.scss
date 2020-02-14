@@ -1,0 +1,17 @@
+@mixin load-component-Wrapper {
+
+  .wrapper {
+    max-width: wrapper();
+
+    margin-left: auto;
+    margin-right: auto;
+
+    // Modifiers
+    @each $wrapper-key, $wrapper-width in $wrapper-widths {
+
+      &--#{abbreviate($wrapper-key)} {
+        max-width: $wrapper-width;
+      }
+    }
+  }
+}

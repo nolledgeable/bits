@@ -1,0 +1,32 @@
+@mixin load-component-Panel {
+  @include extendable('panel') {
+    padding: spacing();
+
+    background-color: white;
+    border-radius: border-radius();
+    box-shadow: shadow();
+
+    // Modifiers
+    &--large {
+      @include breakpoint('small') {
+        padding: spacing('x-large');
+      }
+
+      .panel__footer {
+        @include breakpoint('small') {
+          margin: spacing('x-large') -#{spacing('x-large')} -#{spacing('x-large')};
+          padding-left: spacing('x-large');
+          padding-right: spacing('x-large');
+        }
+      }
+    }
+  }
+
+  .panel__footer {
+    margin: spacing() -#{spacing()} -#{spacing()};
+    padding: spacing();
+
+    background-color: color('grey-3x-light');
+    border-radius: 0 0 border-radius() border-radius();
+  }
+}

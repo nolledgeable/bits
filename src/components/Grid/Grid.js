@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import cx from 'classnames';
 
 import { getResponsiveClasses, abbreviate } from '../../helpers';
 
@@ -8,29 +8,23 @@ import { getResponsiveClasses, abbreviate } from '../../helpers';
 const Grid = ({
   children,
   className = '',
-  direction = 'ltr',
   element: Element = 'div',
-  flush = false,
-  gutterSize = 'default',
-  itemsPerRow = '1',
-  verticalAlign = 'top',
+  gutter = 'default',
+  itemsPerRow = '',
   ...rest
 }) => {
-  const joinedClassNames = classNames(
+  const classNames = cx(
     'grid',
     {
-      [`grid--${direction}`]: direction !== 'ltr',
-      'grid--flush': flush,
-      [`grid--${abbreviate(gutterSize)}`]: gutterSize !== 'default',
-      [`grid--${itemsPerRow}`]: typeof itemsPerRow === 'number',
-      [`grid--${verticalAlign}`]: verticalAlign !== 'top'
+      [`grid--${abbreviate(gutter)}`]: gutter !== 'default',
+      [`grid--${itemsPerRow}`]: itemsPerRow
     },
     getResponsiveClasses(itemsPerRow, 'grid'),
     className
   );
 
   return (
-    <Element className={joinedClassNames} {...rest}>
+    <Element className={classNames} {...rest}>
       {children}
     </Element>
   );
@@ -40,15 +34,12 @@ const Grid = ({
 Grid.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  direction: PropTypes.oneOf([ 'ltr', 'rtl' ]),
-  element: PropTypes.string,
-  flush: PropTypes.bool,
-  gutterSize: PropTypes.oneOf([ 'x-small', 'small', 'default', 'large', 'x-large' ]),
+  element: PropTypes.oneOf(['div', 'ul', 'ol']),
+  gutter: PropTypes.oneOf(['none', 'x-small', 'small', 'default', 'large', 'x-large']),
   itemsPerRow: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.object
-  ]),
-  verticalAlign: PropTypes.oneOf([ 'top', 'middle', 'bottom' ])
+    PropTypes.objectOf(PropTypes.string)
+  ])
 };
 
 

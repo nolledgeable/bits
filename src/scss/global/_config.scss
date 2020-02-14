@@ -1,0 +1,258 @@
+// Load modules
+// --------------------------------
+$load-elements: true !default;
+$load-animations: true !default;
+$load-utilities: true !default;
+$load-components: true !default;
+
+
+// Breakpoints
+// --------------------------------
+$breakpoints: (
+  'small': 576px,
+  'medium': 768px,
+  'large': 992px,
+  'x-large': 1200px,
+) !default;
+
+
+// Z-indexes
+// --------------------------------
+$z-indexes: (
+  'minus': -11,
+  'default': 0,
+  'large': 11,
+  'x-large': 22,
+  '2x-large': 33,
+  '3x-large': 44,
+  '4x-large': 55,
+  'huge': 66,
+  'x-huge': 77
+) !default;
+
+
+// Spacing
+// --------------------------------
+$spacing-units: (
+  'none': 0,
+  '3x-small': 6px,
+  '2x-small': 8px,
+  'x-small': 12px,
+  'small': 16px,
+  'default': 24px,
+  'large': 32px,
+  'x-large': 48px,
+  '2x-large': 64px,
+  '3x-large': 96px,
+  '4x-large': 128px
+) !default;
+
+$margins: (
+  'none',
+  '2x-small',
+  'default',
+  'x-large'
+) !default;
+
+$paddings: (
+  'x-small',
+  'default'
+) !default;
+
+
+// Border radii
+// --------------------------------
+$border-radii: (
+  'none': 0,
+  'small': 2px,
+  'default': 4px,
+  'large': 8px,
+  'infinite': infinite() // Rounded
+) !default;
+
+
+// Shadows
+// --------------------------------
+$shadows: (
+  'small': (0 1px 2px),
+  'default': (0 2px 4px),
+  'large': (0 2px 8px),
+  'x-large': (0 4px 16px)
+) !default;
+
+
+// Font families
+// --------------------------------
+$font-families: (
+  'title': ('Roboto', Helvetica, Arial, sans-serif),
+  'body': ('Roboto', Helvetica, Arial, sans-serif),
+  'system': (-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol')
+) !default;
+
+
+// Font weight
+// --------------------------------
+$font-weights: (
+  'bold': 700,
+  'normal': 400
+) !default;
+
+// Font-sizes
+// --------------------------------
+$font-sizes: (
+  'x-small': 0.75rem,
+  'small': 0.875rem,
+  'default': 1rem,
+  'large': 1.125rem,
+  'x-large': 1.25rem,
+  '2x-large': 1.5rem,
+  '3x-large': 2rem,
+  '4x-large': 2.5rem,
+  'huge': 3rem,
+  'x-huge': 4rem,
+) !default;
+
+// Title font-sizes for small and default screens
+$title-font-sizes: (
+  'default': (
+    1: font-size('2x-large'),
+    2: font-size('x-large'),
+    3: font-size('large'),
+    4: font-size('large'),
+    5: font-size(),
+    6: font-size()
+  ),
+  'small': (
+    1: font-size('2x-large'),
+    2: font-size('x-large'),
+    3: font-size('large'),
+    4: font-size('large'),
+    5: font-size(),
+    6: font-size()
+  ),
+  'medium': (
+    1: font-size('3x-large'),
+    2: font-size('2x-large'),
+    3: font-size('x-large'),
+    4: font-size('large'),
+    5: font-size(),
+    6: font-size()
+  ),
+  'large': (
+    1: font-size('4x-large'),
+    2: font-size('3x-large'),
+    3: font-size('x-large'),
+    4: font-size('large'),
+    5: font-size(),
+    6: font-size()
+  )
+) !default;
+
+$title-color: color('grey-dark') !default;
+$title-font-weight: font-weight('bold') !default;
+
+
+// Line heights
+// --------------------------------
+$line-heights: (
+  'none': 1,
+  'small': 1.25,
+  'default': 1.5,
+  'large': 1.75
+) !default;
+
+
+// Colors
+// --------------------------------
+$colors-default: (
+  'primary': black,
+  'secondary': black,
+  'tertiary': black
+) !default;
+
+$colors-grey: (
+  'white': white,
+  'black': black,
+  'grey-3x-light': #FAFAFA,
+  'grey-2x-light': #DADADA,
+  'grey-x-light': #9A9A9A,
+  'grey-light': #7A7A7A,
+  'grey': #4A4A4A,
+  'grey-dark': #1A1A1A
+) !default;
+
+$colors-feedback: (
+  'error': #FF7979,
+  'info': #03B1EE,
+  'warning': #FFD200,
+  'success': #00EA0E,
+) !default;
+
+$colors-brand: (
+  'twitter': #1DA1F2,
+  'facebook': #3B5998,
+  'spotify': #1ED760,
+  'instagram': #E4405F
+) !default;
+
+// Build map of all colors
+$colors: map-merge(
+  $colors-default,
+  map-merge(
+    $colors-grey,
+    map-merge(
+      $colors-feedback,
+      $colors-brand
+    )
+  )
+);
+
+
+// Transitions/animations
+// @link https://goo.gl/YT7XK8
+// --------------------------------
+$transitions: (
+  'standard': cubic-bezier(0.4, 0, 0.2, 1),
+  'enter': cubic-bezier(0, 0, 0.2, 1),
+  'leave': cubic-bezier(0.4, 0, 1, 1),
+  'bounce': cubic-bezier(0.6, 2, 0.7, 0.5)
+) !default;
+
+$animation-speeds: (
+  'fast': 0.1s,
+  'default': 0.2s,
+  'slow': 0.4s,
+  'x-slow': 0.8s
+) !default;
+
+// Wrapper
+// --------------------------------
+$wrapper-widths: (
+  '2x-small': 320px,
+  'x-small': 480px,
+  'small': 640px,
+  'default': 960px,
+  'large': 1280px,
+  'x-large': 1440px
+) !default;
+
+
+// Grid
+// --------------------------------
+$grid-denominators: 2, 3, 4 !default;
+$grid-gutters: (
+  'none': 0,
+  'small': spacing('x-small'),
+  'default': spacing(),
+  'large': spaing('x-large')
+) !default;
+
+
+// List
+// --------------------------------
+$list-gutters: (
+  'none': 0,
+  'default': spacing('3x-small'),
+  'large': spacing('x-small'),
+  'x-large': spacing()
+) !default;

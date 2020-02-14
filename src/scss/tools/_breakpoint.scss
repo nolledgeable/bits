@@ -1,0 +1,43 @@
+// Mixin for generating media queries from $breakpoints map
+// --------------------------------
+@mixin breakpoint($breakpoint, $direction: 'up') {
+  $px-value: undefined;
+  $media-query: undefined;
+
+  @if str-index(to-str($breakpoint), 'px') {
+    $px-value: $breakpoint;
+    $breakpoint: false;
+  }
+  @else {
+    $px-value: map-get($breakpoints, $breakpoint);
+  }
+
+  @if $breakpoint == 'retina' {
+    $media-query: '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)';
+  }
+  @else if $direction == 'only' and $breakpoint {
+    $breakpoint-keys: map-keys($breakpoints);
+    $min-width-index: index($breakpoint-keys, $breakpoint) - 1;
+
+    $min-width: if(
+      $min-width-index > 0,
+      map-get($breakpoints, nth($breakpoint-keys, $min-width-index)),
+      0px
+    );
+
+    $media-query: '(min-width: #{$min-width}) and (max-width: #{$px-value - 0.5})';
+  }
+  @else if $direction == 'down' {
+    $media-query: '(max-width: #{$px-value - 0.5})';
+  }
+  @else if $direction == 'up' {
+    $media-query: '(min-width: #{$px-value})';
+  }
+  @else {
+    @error $direction;
+  }
+
+  @media screen and #{$media-query} {
+    @content;
+  }
+}

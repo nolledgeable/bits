@@ -4,7 +4,6 @@
     "standard-react"
   ],
   "rules": {
-    "array-bracket-spacing": ["error", "always"],
     "jsx-quotes": ["error", "prefer-double"],
     "no-extend-native": "off",
     "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 0 }],
